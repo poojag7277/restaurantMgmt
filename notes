@@ -1,0 +1,4 @@
+to run
+make dbUp
+split terminal
+make serverUp

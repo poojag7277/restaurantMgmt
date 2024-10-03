@@ -7,7 +7,8 @@ exports.createRestaurant = async (req, res) => {
             name: req.body.name,
             phonenumber: req.body.phonenumber,
             location: req.body.location,
-            ratings: req.body.ratings
+            ratings: req.body.ratings,
+            date: req.body.date 
         });
         newRestaurant = await newRestaurant.save(); // Save the new room to the database
         res.send(newRestaurant); // Send the saved room as a response
@@ -43,7 +44,8 @@ exports.updateRestaurant = async (req, res) => {
             name: req.body.name,
             phonenumber: req.body.phonenumber,
             location: req.body.location,
-            ratings: req.body.ratings
+            ratings: req.body.ratings,
+            date: req.body.date
         }, { new: true }); // Return the updated room
 
         if (!updatedRestaurant) return res.status(404).send('Restaurant not found in database'); // If room is not found, return 404

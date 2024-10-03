@@ -1,3 +1,4 @@
+const { type } = require('express/lib/response');
 const mongoose = require('mongoose');
 
 const restaurantSchema = new mongoose.Schema({
@@ -13,12 +14,13 @@ const restaurantSchema = new mongoose.Schema({
         type: Number,
         required: true //phonenumber of customer is mandatory
     },
-    // date: {
-    //     type: Date,
-    //     required:true // date of when customer booked is required
-    // },
     ratings: {
         type: Number
+    },
+    date: {
+        type: Date,
+        Default: Date.now(),
+        required: true
     }
     
 });

@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
     res.send("Hello! Welcome to our restaurant home page.");
 });
 
+
 // Use room routes with prefix '/api'
 app.use('/api', restaurantRoute);
 
@@ -23,3 +24,5 @@ app.use('/api', restaurantRoute);
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
+
