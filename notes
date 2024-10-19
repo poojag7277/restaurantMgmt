@@ -1,4 +1,12 @@
+do git pull
 to run
 make dbUp
 split terminal
 make serverUp
+might ask for installation of express if not found
+the thunder client link :
+localhost:3000/api/restaurant
+
+git add .
+git commit -m ""
+git push
