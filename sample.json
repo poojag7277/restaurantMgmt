@@ -3,7 +3,14 @@
         "name": "Odisha Dhaba",
         "phonenumber": "1234567890",
         "location": "nh",
-        "ratings":"4.7",
+        "isOpen":true,
         "date":"Date.now()"
+    },
+    {
+        "name": "The Spicy Grill",
+        "location": "1234 Flavor Street, Food City",
+        "phonenumber":"123456789",
+        "date": "2010-05-15",
+        "isOpen": true,
     }
 ]
