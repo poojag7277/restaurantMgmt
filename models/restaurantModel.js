@@ -14,12 +14,12 @@ const restaurantSchema = new mongoose.Schema({
         type: Number,
         required: true //phonenumber of customer is mandatory
     },
-    ratings: {
-        type: Number
+    isOpen: {
+        type: Boolean,
+        default: true,
     },
     date: {
         type: Date,
-        Default: Date.now(),
         required: true
     }
     
