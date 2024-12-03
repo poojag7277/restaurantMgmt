@@ -1,9 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const restaurantRoute = require('./routes/restaurantRoute'); // Import room routes
+const cors = require('cors'); // Import CORS
+require('dotenv').config(); // Ensure .env file is loaded
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
+
+// Enable CORS (Cross-Origin Resource Sharing)
+app.use(cors()); // Allow all origins by default (you can restrict this later if needed)
 
 // Connect to MongoDB
 connectDB();
