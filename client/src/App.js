@@ -10,8 +10,6 @@ import Footer from './components/Footer';
 import FeaturedDishes from './components/FeaturedDishes';
 import Menu from './components/Menu';
 import ReserveTable from './components/ReserveTable';
-import Gallery from './components/Gallery';
-import AboutUs from './components/AboutUs'; // Add an "About Us" page if needed
 
 const App = () => {
   return (
@@ -25,8 +23,6 @@ const App = () => {
               <Route path="/" element={<FeaturedDishes />} /> {/* Home/Featured Dishes */}
               <Route path="/menu" element={<Menu />} />
               <Route path="/reserve" element={<ReserveTable />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/about" element={<AboutUs />} />
             </Routes>
           </Box>
           <Footer />
