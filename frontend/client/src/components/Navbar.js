@@ -11,8 +11,8 @@ import {
   MenuItem,
 } from '@mui/material';
 //import GitHubIcon from '@mui/icons-material/GitHub';
-//import HomeIcon from '@mui/icons-material/Home';
-//import MenuBookIcon from '@mui/icons-material/MenuBook'; // Added Notes icon
+import HomeIcon from '@mui/icons-material';
+import MenuBookIcon from '@mui/icons-material'; // Added Notes icon
 
 const notesPages = [
     { title: 'Home', path: '/notes/home' },
@@ -40,9 +40,11 @@ const Navbar= () => {
              </Typography>
         
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Button>
+                        <Button color='red' startIcon='HomeIcon'>
+                            HomePage
                         </Button>
-                        <Button>
+                        <Button color='red' startIcon='MenuBookIcon'>
+                            Popular Items
                         </Button>
                         <Menu>
                         </Menu>

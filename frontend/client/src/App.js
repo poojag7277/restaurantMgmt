@@ -14,6 +14,8 @@ const App = () => {
     <Router>
   <Box display="flex" flexDirection="column" minHeight="100vh">
     < Navbar/>
+    <Box  component="main" flexGrow={1} py={3}>
+    </Box>
     < Footer/>
   </Box> 
     </Router>
