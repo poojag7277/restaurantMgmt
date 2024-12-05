@@ -10,7 +10,7 @@ const Footer = () => (
             py: 4,
             width: '100%',
             textAlign: 'center',
-            borderTop: `1px solid ${theme => theme.palette.primary.main}`,
+            borderTop: `1px solid `,
         }}
     >
         <Typography variant ="h6" gutterBottom>
