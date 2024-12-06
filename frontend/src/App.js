@@ -8,7 +8,8 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import HomePage from './components/HomePage'
+import HomePage from './components/HomePage';
+import CreateRest from './components/CreateRest';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
     <Box  component="main" flexGrow={1} py={3}>
       <Routes>
         <Route exact path='/' element={<HomePage />} />
+        <Route path='/' element={<CreateRest />} />
       </Routes>
     </Box>
     < Footer/>
