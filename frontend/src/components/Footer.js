@@ -10,14 +10,14 @@ const Footer = () => (
             py: 4,
             width: '100%',
             textAlign: 'center',
-            borderTop: `1px solid `,
+            borderTop: `1px solid ${theme => theme.palette.primary.main}`,
         }}
     >
         <Typography variant ="h6" gutterBottom>
             hope you had a good day
         </Typography>
         <Typography variant="body2" sx={{ mt: 2 }}>
-         © {new Date().getFullYear()} Done | All Rights Reserved
+         © {new Date().getFullYear()} | All Rights Reserved
          </Typography>
     </Box>
 );
