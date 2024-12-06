@@ -5,7 +5,7 @@ const carmineBrightColors = {
   surface: '#fff5f5', // Light surface with a soft pink tone
   overlay: '#ffeaea', // Very light overlay
   muted: '#cfcfcf', // Muted greys for subtle contrasts
-  subtle: '#b3b3b3', // Lighter grey for secondary text
+  subtle: '#635b5b', // light secondary text
   text: '#2b2b2b', // Bright, dark text for excellent readability
   carmine: '#d72638', // Primary carmine red
   gold: '#f8b500', // Accent gold
@@ -50,32 +50,34 @@ const carmineBrightTheme = createTheme({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontFamily: '"Playfair Display", serif',
-      fontWeight: 700,
-      fontSize: '2.5rem',
       color: carmineBrightColors.text,
     },
     h2: {
       fontFamily: '"Playfair Display", serif',
-      fontWeight: 600,
-      fontSize: '2rem',
       color: carmineBrightColors.text,
     },
     h3: {
       fontFamily: '"Playfair Display", serif',
-      fontWeight: 500,
-      fontSize: '1.75rem',
+      color: carmineBrightColors.text,
+    },
+    h4: {
+      fontFamily: '"Playfair Display", serif',
+      color: carmineBrightColors.text,
+    },
+    h5: {
+      fontFamily: '"Playfair Display", serif',
+      color: carmineBrightColors.text,
+    },
+    h6: {
+      fontFamily: '"Playfair Display", serif',
       color: carmineBrightColors.text,
     },
     body1: {
       fontFamily: '"Roboto", sans-serif',
-      fontWeight: 400,
-      fontSize: '1rem',
       color: carmineBrightColors.text,
     },
     body2: {
       fontFamily: '"Roboto", sans-serif',
-      fontWeight: 300,
-      fontSize: '0.875rem',
       color: carmineBrightColors.subtle,
     },
   },
