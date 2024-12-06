@@ -40,11 +40,12 @@ const CreateRest = () => {
   
       }
       return (
-        <div>
-            <input type='text' placeholder='enter name ' name='name'>
-            name
-            </input>
-        </div>
+        <form noValidate onSubmit={
+            <div>
+                <input type='text' placeholder='enter text'/>
+            </div>
+        }></form>
+
         
       ); 
 }
