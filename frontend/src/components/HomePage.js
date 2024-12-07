@@ -10,16 +10,16 @@ const HomePage = () => {
         Welcome to the Restaurant Management System
       </Typography>
       <Typography variant="h5" gutterBottom>
-       Check all the items.
+       Check items below.
       </Typography>
       <Box mt={4}>
         <Button 
           component={Link} 
-          to="/book-list" // Updated to link to the ShowBookList component
+          to="/restaurant-list" // Updated to link to the ShowBookList component
           color="primary" 
           variant="contained"
         >
-          View Data
+          View items
         </Button>
       </Box>
     </Container>
