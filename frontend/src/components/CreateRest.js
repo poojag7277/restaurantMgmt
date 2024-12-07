@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Navbar';
 
 import axios from 'axios';
 
@@ -12,7 +13,6 @@ const CreateRest = (props) => {
     name: '',
     phonenumber:'' ,
     location:'',
-    isOpen:'',
     date:''
   });
   const [showToast, setShowToast] = useState(false);
@@ -31,17 +31,16 @@ const CreateRest = (props) => {
           name: '',
           phonenumber:'' ,
           location:'',
-          isOpen:'',
           date:''
         });
 
         // Show the success alert
         toast.success('You are added successfully!', {
-          position: "top-left",
-          autoClose: 5000,
+          position: "top-right",
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: "dark",
@@ -61,8 +60,8 @@ const CreateRest = (props) => {
         console.log(err)
         // Show the success alert
         toast.error('Something went wrong, try again!', {
-          position: "top-left",
-          autoClose: 5000,
+          position: "top-right",
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -76,10 +75,9 @@ const CreateRest = (props) => {
 
   return (
     <div className='CreateRest'>
-      {/* <Navbar /> */}
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -96,7 +94,7 @@ const CreateRest = (props) => {
           <div className='col-md-8 m-auto'>
             <br />
             <Link to='/' className='btn btn-outline-warning float-left'>
-              Show Description List
+              Show Order List
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
@@ -141,23 +139,9 @@ const CreateRest = (props) => {
 
               <div className='form-group'>
                 <input
-                  type='bool'
-                  placeholder='isOpen?'
-                  name='isOpen'
-                  className='form-control'
-                  value={description.isOpen}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              
-
-              <div className='form-group'>
-                <input
                   type='date'
                   placeholder='Enter date'
-                  name='publisher'
+                  name='date'
                   className='form-control'
                   value={description.date}
                   onChange={onChange}

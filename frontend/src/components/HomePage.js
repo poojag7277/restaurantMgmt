@@ -10,7 +10,7 @@ const HomePage = () => {
         Welcome to the Restaurant Management System
       </Typography>
       <Typography variant="h5" gutterBottom>
-       Check items below.
+       Enter data
       </Typography>
       <Box mt={4}>
         <Button 
@@ -19,7 +19,7 @@ const HomePage = () => {
           color="primary" 
           variant="contained"
         >
-          View items
+          Login
         </Button>
       </Box>
     </Container>

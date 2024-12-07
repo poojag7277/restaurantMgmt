@@ -7,7 +7,6 @@ exports.createRestaurant = async (req, res) => {
             name: req.body.name,
             phonenumber: req.body.phonenumber,
             location: req.body.location,
-            isOpen: req.body.isOpen,
             date: req.body.date 
         });
         newRestaurant = await newRestaurant.save(); // Save the new room to the database
@@ -44,7 +43,6 @@ exports.updateRestaurant = async (req, res) => {
             name: req.body.name,
             phonenumber: req.body.phonenumber,
             location: req.body.location,
-            isOpen: req.body.isOpen,
             date: req.body.date
         }, { new: true }); // Return the updated room
 
