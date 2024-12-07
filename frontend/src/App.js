@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import CreateRest from './components/CreateRest';
+import ShowItemsList from './components/ShowItemsList';
 
 
 const App = () => {
@@ -22,7 +23,8 @@ const App = () => {
     <Box  component="main" flexGrow={1} py={3}>
       <Routes>
         <Route exact path='/' element={<HomePage />} />
-        <Route path='/restaurant-list' element={<CreateRest />} />
+        <Route path='/create-rest' element={<CreateRest />} />
+        <Route path='/items-list' element={<ShowItemsList />} />
       </Routes>
     </Box>
     < Footer/>

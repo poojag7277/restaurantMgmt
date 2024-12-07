@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './Navbar';
 
 import axios from 'axios';
 
@@ -51,7 +50,7 @@ const CreateRest = (props) => {
         setTimeout(() => {
           setShowToast(false); // Hide the toast
           navigate('/'); // Navigate to homepage
-        }, 5000); // Adjust the timeout as needed
+        }, 2000); // Adjust the timeout as needed
 
       })
       .catch((err) => {
@@ -98,8 +97,8 @@ const CreateRest = (props) => {
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Add Book</h1>
-            <p className='lead text-center'>Create new book</p>
+            <h1 className='display-4 text-center'>Add Items</h1>
+            <p className='lead text-center'>Create new order</p>
 
             <form noValidate onSubmit={onSubmit}>
               <div className='form-group'>
