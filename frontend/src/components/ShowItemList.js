@@ -6,19 +6,19 @@ import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui
 
 import ItemsCard from './ItemsCard';
 
-function ShowItemsList() {
+function ShowItemList() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     axios
-      .get(`/api/restaurant`)
+      .get(`/api/items`)
       .then((res) => {
         setItems(res.data);
         setLoading(false); // Set loading to false once data is fetched
       })
       .catch((err) => {
-        console.log('Error from ShowItemsList ->', err);
+        console.log('Error from ShowItemList ->', err);
         setLoading(false); // Set loading to false even on error
       });
   }, []);
@@ -36,7 +36,7 @@ function ShowItemsList() {
         variant="contained"
         sx={{ mb: 4 }}
       >
-        Add new item
+        Add New Item
       </Button>
 
       {loading ? (
@@ -49,13 +49,13 @@ function ShowItemsList() {
           {items.length === 0 ? (
             <Grid item xs={12}>
               <Typography variant="h6" color="text.secondary">
-                No Items found
+                No items found!
               </Typography>
             </Grid>
           ) : (
-            items.map((restaurant, index) => (
-              <Grid items xs={12} sm={6} md={4} key={index}>
-                <ItemsCard items={items} />
+            items.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <ItemsCard item={item} />
               </Grid>
             ))
           )}
@@ -65,4 +65,4 @@ function ShowItemsList() {
   );
 }
 
-export default ShowItemsList;
+export default ShowItemList;

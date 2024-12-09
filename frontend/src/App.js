@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import CreateRest from './components/CreateRest';
-import ShowItemsList from './components/ShowItemsList';
+import ShowItemList from './components/ShowItemList';
 
 
 const App = () => {
@@ -24,7 +24,8 @@ const App = () => {
       <Routes>
         <Route exact path='/' element={<HomePage />} />
         <Route path='/create-rest' element={<CreateRest />} />
-        <Route path='/items-list' element={<ShowItemsList />} />
+        <Route path='/show-restaurant' element={<ShowItemList />} />
+       
       </Routes>
     </Box>
     < Footer/>
