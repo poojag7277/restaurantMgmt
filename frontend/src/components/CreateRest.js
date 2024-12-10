@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Container } from '@mui/material';
+//import { Container } from '@mui/material';
 
 import axios from 'axios';
 
@@ -25,7 +25,8 @@ const CreateRest = (props) => {
     e.preventDefault();
 
     axios
-      .post('/api/restaurant', description)
+      .post('https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io/api/restaurant', description)
+//      .post('/api/restaurant', description)
       .then((res) => {
         setDescription({
           name: '',
@@ -40,7 +41,7 @@ const CreateRest = (props) => {
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: false,
+          // pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: "dark",
@@ -98,8 +99,8 @@ const CreateRest = (props) => {
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Add Items</h1>
-            <p className='lead text-center'>Create new order</p>
+            <h1 className='display-4 text-center'>Add Info</h1>
+            <p className='lead text-center'>Create New Page</p>
 
             <form noValidate onSubmit={onSubmit}>
               <div className='form-group'>

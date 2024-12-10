@@ -36,7 +36,7 @@ function ShowItemList() {
         variant="contained"
         sx={{ mb: 4 }}
       >
-        Add New Item
+        Add data
       </Button>
 
       {loading ? (

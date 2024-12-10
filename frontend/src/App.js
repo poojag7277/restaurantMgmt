@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import CreateRest from './components/CreateRest';
 import ShowItemList from './components/ShowItemList';
+import ShowItemDetails from './components/ShowItemDetails';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path='/' element={<HomePage />} />
         <Route path='/create-rest' element={<CreateRest />} />
         <Route path='/show-restaurant' element={<ShowItemList />} />
+        <Route path='/show-restaurant/:id' element={<ShowItemDetails />} />
        
       </Routes>
     </Box>

@@ -1,33 +1,40 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const restaurantRoute = require('./routes/restaurantRoute'); // Import room routes
-const cors = require('cors'); // Import CORS
-require('dotenv').config(); // Ensure .env file is loaded
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-// Enable CORS (Cross-Origin Resource Sharing)
-app.use(cors()); // Allow all origins by default (you can restrict this later if needed)
+const express = require("express");
+const connectDB = require("./config/db");
+//const restaurantRoute = require('./routes/restaurantRoute'); // Import room routes
+const cors = require("cors"); // Import CORS
+const restaurant = require("./routes/restaurantRoute")
+const path = require('path');
+require('dotenv').config( {path: "./config.env"}); // Ensure .env file is loaded
 
 // Connect to MongoDB
 connectDB();
 
+const app = express();
+
+
+
+// // Enable CORS (Cross-Origin Resource Sharing)
+// Allow all origins by default (you can restrict this later if needed)
+
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use(cors()); 
+app.use("/api/restaurant",restaurant)
 
-// Basic route for home page
-app.get("/", (req, res) => {
-    res.send("Hello! Welcome to our restaurant home page.");
-});
+// // SERVE STATIC FILES
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", function (_, res) {
+//     res.sendFile(
+//         path.join(__dirname, "./client/build/index.html"),
+//         function (err) {
+//             res.status(500).send(err);
+//         }
+//     );
+// });
 
-
-// Use room routes with prefix '/api'
-app.use('/api', restaurantRoute);
 
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-});
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Express server running on port ${port}`));
 
 
