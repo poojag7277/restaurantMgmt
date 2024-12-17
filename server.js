@@ -18,20 +18,16 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
-app.use(cors()); 
+app.use(cors({
+    origin: "*", // Allow all origins temporarily for testing
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    credentials: true
+  }));  // Allow all origins for development
 app.use("/api/restaurant",restaurant)
 
-// // SERVE STATIC FILES
-// app.use(express.static(path.join(__dirname, "./client/build")));
-// app.get("*", function (_, res) {
-//     res.sendFile(
-//         path.join(__dirname, "./client/build/index.html"),
-//         function (err) {
-//             res.status(500).send(err);
-//         }
-//     );
-// });
-
+app.get('/', (req, res) => {
+    res.send('Welcome to the Restaurant Management API');
+});
 
 // Start the server
 const port = process.env.PORT || 5000;

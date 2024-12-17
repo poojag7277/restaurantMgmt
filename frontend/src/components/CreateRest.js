@@ -24,10 +24,11 @@ const CreateRest = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    axios
+      axios
       .post('https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io/api/restaurant', description)
 //      .post('/api/restaurant', description)
       .then((res) => {
+        console.log("Response: ",res.data)
         setDescription({
           name: '',
           phonenumber:'' ,
@@ -57,8 +58,9 @@ const CreateRest = (props) => {
       })
       .catch((err) => {
         console.log('Error in CreateRest!');
-        console.log('The error is -> ')
-        console.log(err)
+        console.log("The error is -> ",err)
+//        console.log(err)
+//        console.log(err.response ? err.response.data : err.message)
         // Show the success alert
         toast.error('Something went wrong, try again!', {
           position: "top-right",
