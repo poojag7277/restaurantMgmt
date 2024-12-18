@@ -11,10 +11,19 @@ connectDB();
 
 const app = express();
 
-
-
 // // Enable CORS (Cross-Origin Resource Sharing)
 // Allow all origins by default (you can restrict this later if needed)
+
+// SERVE STATIC FILES
+app.use(express.static(path.join(__dirname, "./frontend/build")));
+app.get("*", function (_, res) {
+    res.sendFile(
+        path.join(__dirname, "./frontend/build/index.html"),
+        function (err) {
+            res.status(500).send(err);
+        }
+    );
+});
 
 // Middleware to parse JSON requests
 app.use(express.json());
