@@ -32,7 +32,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true
   }));  // Allow all origins for development
-app.use("/api/restaurant",restaurant)
+app.use("/api",restaurant)
 
 app.get('/', (req, res) => {
     res.send('Welcome to the Restaurant Management API');
