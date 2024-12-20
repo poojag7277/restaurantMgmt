@@ -52,14 +52,14 @@ const CreateRest = (props) => {
         // Delay the navigation slightly to allow the toast to be seen
         setTimeout(() => {
           setShowToast(false); // Hide the toast
-          navigate('/'); // Navigate to homepage
+          navigate('/show-restaurant'); // Navigate to homepage
         }, 2000); // Adjust the timeout as needed
 
       })
       .catch((err) => {
         console.log('Error in CreateRest!');
         console.log("The error is -> ",err)
-//        console.log(err)
+        console.log(err)
 //        console.log(err.response ? err.response.data : err.message)
         // Show the success alert
         toast.error('Something went wrong, try again!', {

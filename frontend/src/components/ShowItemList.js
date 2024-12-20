@@ -7,14 +7,15 @@ import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui
 import ItemsCard from './ItemsCard';
 
 function ShowItemList() {
-  const [items, setItems] = useState([]);
+  const [items, setData] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     axios
-      .get(`/api/items`)
+    .get("https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io/api/restaurant")
+//      .get(`/api/items`)
       .then((res) => {
-        setItems(res.data);
+        setData(res.data);
         setLoading(false); // Set loading to false once data is fetched
       })
       .catch((err) => {
@@ -31,7 +32,7 @@ function ShowItemList() {
 
       <Button
         component={Link}
-        to="/create-rest"
+        to="/show-restaurant"
         color="primary"
         variant="contained"
         sx={{ mb: 4 }}
