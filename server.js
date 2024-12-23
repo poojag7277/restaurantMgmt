@@ -28,7 +28,7 @@ app.get("*", function (_, res) {
 // Middleware to parse JSON requests
 app.use(express.json());
 app.use(cors({
-    origin: "*", // Allow all origins temporarily for testing
+    origin: ["https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io", "https://restaurantmgmt.onrender.com/api/restaurant"], // Allow all origins temporarily for testing
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true
   }));  // Allow all origins for development
