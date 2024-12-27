@@ -58,15 +58,15 @@ function ShowItemList() {
       ) : (
         <Grid container spacing={3}>
           {items.length === 0 ? (
-            <Grid item xs={12}>
+            <Grid restaurant xs={12}>
               <Typography variant="h6" color="text.secondary">
                 No items found! Add some items to get started.
               </Typography>
             </Grid>
           ) : (
-            items.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <ItemsCard item={item} />
+            items.map((restaurant, index) => (
+              <Grid xs={12} sm={6} md={4} key={index}>
+                <ItemsCard restaurant={restaurant} />
               </Grid>
             ))
           )}
