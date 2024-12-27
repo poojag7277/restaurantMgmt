@@ -25,7 +25,7 @@ const ItemsCard = ({ restaurant }) => {
       />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h6" component="div" color="primary" gutterBottom>
-          <Link to={`/show-restaurant/${restaurant._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to={`/show-restaurant/`} style={{ textDecoration: 'none', color: 'inherit' }}>
             {restaurant.name}
           </Link>
         </Typography>
@@ -46,7 +46,7 @@ const ItemsCard = ({ restaurant }) => {
       <Box sx={{ p: 2, mt: 'auto' }}>
         <Button
           component={Link}
-          to={`/show-restaurant/${restaurant._id}`}
+          to={`/show-restaurant/`}
           variant="contained"
           color="primary"
           size="small"
