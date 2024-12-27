@@ -25,7 +25,7 @@ app.use(express.json());
 //app.use(cors());
 
 app.use(cors({
-    origin: ["https://restaurantmgmt.onrender.com"], // Allow all origins temporarily for testing
+    origin: ["https://restaurantmgmt.onrender.com", "https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io"], // Allow all origins temporarily for testing
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true
   }));  // Allow all origins for development

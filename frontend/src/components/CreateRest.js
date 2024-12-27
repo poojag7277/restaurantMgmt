@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import axios from 'axios';
 
-const CreateRest = (props) => {
+const CreateRest = () => {
   const navigate = useNavigate();
   const [description,setDescription] = useState({
     name: '',
@@ -26,9 +26,7 @@ const CreateRest = (props) => {
 
       axios
       .post('https://restaurantmgmt.onrender.com/api/restaurant', description)
-//      .post('/api/restaurant', description)
-      .then((res) => {
-        console.log("Response: ",res.data)
+      .then(() => {
         setDescription({
           name: '',
           phonenumber:'' ,
@@ -39,7 +37,7 @@ const CreateRest = (props) => {
         // Show the success alert
         toast.success('You are added successfully!', {
           position: "top-right",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           // pauseOnHover: false,
@@ -53,7 +51,7 @@ const CreateRest = (props) => {
         setTimeout(() => {
           setShowToast(false); // Hide the toast
           navigate('/show-restaurant'); // Navigate to homepage
-        }, 2000); // Adjust the timeout as needed
+        }, 1000); // Adjust the timeout as needed
 
       })
       .catch((err) => {
@@ -64,7 +62,7 @@ const CreateRest = (props) => {
         // Show the success alert
         toast.error('Something went wrong, try again!', {
           position: "top-right",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
