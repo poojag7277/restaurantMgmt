@@ -6,7 +6,7 @@ function Update(props) {
   const [item, setItem] = useState({
     name: '',
     phonenumber: '',
-    address: '',
+    location: '',
     date: ''
   });
 
@@ -40,7 +40,7 @@ function Update(props) {
     const data = {
       name: item.name,
       phonenumber: item.phonenumber,
-      address: item.address,
+      location: item.location,
       date: item.date,
     };
 
@@ -92,7 +92,7 @@ function Update(props) {
               <input
                 type='number'
                 placeholder='phonenumber'
-                name='isbn'
+                name='phonenumber'
                 className='form-control'
                 value={item.phonenumber}
                 onChange={onChange}
@@ -101,13 +101,13 @@ function Update(props) {
             <br />
 
             <div className='form-group'>
-              <label htmlFor='address'>address</label>
+              <label htmlFor='location'>Address</label>
               <input
                 type='text'
                 placeholder='Address'
-                name='address'
+                name='location'
                 className='form-control'
-                value={item.address}
+                value={item.location}
                 onChange={onChange}
               />
             </div>

@@ -12,38 +12,38 @@ import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 
 const Export = () => {
-  const [books, setBooks] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/books')
-      .then(res => {
-        setBooks(res.data);
+    axios.get('https://restaurantmgmt.onrender.com/api/restaurant')
+      .then((res) => {
+        setRestaurants(res.data);
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Error fetching books:', err);
+      .catch((err) => {
+        console.error('Error fetching restaurants:', err);
         setLoading(false);
       });
   }, []);
 
   const exportToPDF = () => {
     const doc = new jsPDF();
-    
+
     // Add title and date
     doc.setFontSize(16);
-    doc.text('Books List', 14, 15);
+    doc.text('Restaurants List', 14, 15);
     doc.setFontSize(10);
     doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
 
     // Create table data
-    const tableColumn = ["Title", "Author", "ISBN", "Publisher", "Published Date"];
-    const tableRows = books.map(book => [
-      book.title,
-      book.author,
-      book.isbn,
-      book.publisher,
-      new Date(book.published_date).toLocaleDateString()
+    const tableColumn = ['Name', 'Phone Number', 'Location', 'Date', 'Description'];
+    const tableRows = restaurants.map((restaurant) => [
+      restaurant.name,
+      restaurant.phonenumber,
+      restaurant.location,
+      new Date(restaurant.date).toLocaleDateString(),
+      restaurant.description || 'N/A',
     ]);
 
     doc.autoTable({
@@ -52,61 +52,64 @@ const Export = () => {
       body: tableRows,
       theme: 'grid',
       styles: { fontSize: 8 },
-      headStyles: { fillColor: [41, 128, 185], textColor: 255 }
+      headStyles: { fillColor: [41, 128, 185], textColor: 255 },
     });
 
-    doc.save('books-list.pdf');
+    doc.save('restaurants-list.pdf');
   };
 
   const exportToExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(books.map(book => ({
-      Title: book.title,
-      Author: book.author,
-      ISBN: book.isbn,
-      Publisher: book.publisher,
-      'Published Date': new Date(book.published_date).toLocaleDateString(),
-      Description: book.description
-    })));
+    const worksheet = XLSX.utils.json_to_sheet(
+      restaurants.map((restaurant) => ({
+        Name: restaurant.name,
+        'Phone Number': restaurant.phonenumber,
+        Location: restaurant.location,
+        Date: new Date(restaurant.date).toLocaleDateString(),
+        Description: restaurant.description || 'N/A',
+      }))
+    );
 
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Books");
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Restaurants');
     const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const data = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    saveAs(data, 'books-list.xlsx');
+    const data = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    saveAs(data, 'restaurants-list.xlsx');
   };
 
   const exportToCSV = () => {
-    const worksheet = XLSX.utils.json_to_sheet(books.map(book => ({
-      Title: book.title,
-      Author: book.author,
-      ISBN: book.isbn,
-      Publisher: book.publisher,
-      'Published Date': new Date(book.published_date).toLocaleDateString(),
-      Description: book.description
-    })));
+    const worksheet = XLSX.utils.json_to_sheet(
+      restaurants.map((restaurant) => ({
+        Name: restaurant.name,
+        'Phone Number': restaurant.phonenumber,
+        Location: restaurant.location,
+        Date: new Date(restaurant.date).toLocaleDateString(),
+        Description: restaurant.description || 'N/A',
+      }))
+    );
 
     const csv = XLSX.utils.sheet_to_csv(worksheet);
     const data = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-    saveAs(data, 'books-list.csv');
+    saveAs(data, 'restaurants-list.csv');
   };
 
   const exportToText = () => {
-    let content = 'BOOKS LIST\n\n';
+    let content = 'RESTAURANTS LIST\n\n';
     content += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
-    
-    books.forEach((book, index) => {
-      content += `${index + 1}. BOOK DETAILS\n`;
-      content += `Title: ${book.title}\n`;
-      content += `Author: ${book.author}\n`;
-      content += `ISBN: ${book.isbn}\n`;
-      content += `Publisher: ${book.publisher}\n`;
-      content += `Published Date: ${new Date(book.published_date).toLocaleDateString()}\n`;
-      content += `Description: ${book.description || 'N/A'}\n`;
+
+    restaurants.forEach((restaurant, index) => {
+      content += `${index + 1}. RESTAURANT DETAILS\n`;
+      content += `Name: ${restaurant.name}\n`;
+      content += `Phone Number: ${restaurant.phonenumber}\n`;
+      content += `Location: ${restaurant.location}\n`;
+      content += `Date: ${new Date(restaurant.date).toLocaleDateString()}\n`;
+      content += `Description: ${restaurant.description || 'N/A'}\n`;
       content += '\n----------------------------\n\n';
     });
 
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'books-list.txt');
+    saveAs(blob, 'restaurants-list.txt');
   };
 
   if (loading) {
@@ -121,19 +124,21 @@ const Export = () => {
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
       <Paper sx={{ p: 4 }}>
         <Typography variant="h4" gutterBottom align="center" color="primary">
-          Export Books
-        </Typography>
-        
-        <Typography variant="body1" sx={{ mb: 4 }} align="center" color="text.secondary">
-          Export your book collection in different formats
+          Export Restaurants
         </Typography>
 
-        <Box sx={{ 
-          display: 'grid', 
-          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, 
-          gap: 3,
-          mt: 4 
-        }}>
+        <Typography variant="body1" sx={{ mb: 4 }} align="center" color="text.secondary">
+          Export your restaurant data in different formats
+        </Typography>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+            gap: 3,
+            mt: 4,
+          }}
+        >
           <Button
             variant="contained"
             size="large"
@@ -176,7 +181,7 @@ const Export = () => {
         </Box>
 
         <Typography variant="body2" sx={{ mt: 4 }} align="center" color="text.secondary">
-          Total Books: {books.length}
+          Total Restaurants: {restaurants.length}
         </Typography>
       </Paper>
     </Container>

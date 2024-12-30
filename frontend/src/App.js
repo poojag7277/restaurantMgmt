@@ -12,7 +12,8 @@ import HomePage from './components/HomePage';
 import CreateRest from './components/CreateRest';
 import ShowItemList from './components/ShowItemList';
 import ShowItemDetails from './components/ShowItemDetails';
-import Update from './components/Update'
+import Update from './components/Update';
+import Export from './components/Export';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/show-restaurant' element={<ShowItemList />} />
         <Route path='/show-restaurant/:id' element={<ShowItemDetails />} />
         <Route path='/edit/:id' element={<Update />} />
+        <Route path='/export' element={<Export />} />
 
        
       </Routes>

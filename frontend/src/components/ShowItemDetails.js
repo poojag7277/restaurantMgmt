@@ -89,7 +89,7 @@ const ShowItemDetails = () => {
             {/* Display item details one after another */}
             <Box display="flex" flexDirection="column">
               <Typography variant="body1" paragraph>
-                {item.address}
+                {item.location}
               </Typography>
               <Typography variant="body1">Phone Number: {item.phonenumber}</Typography>
               <Typography variant="body1">Address; {item.location}</Typography>
