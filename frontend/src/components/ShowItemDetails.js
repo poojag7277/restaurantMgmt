@@ -112,7 +112,7 @@ const ShowItemDetails = () => {
             <Button
               startIcon={<EditIcon />}
               component={RouterLink}
-              to={`/edit-list/${item._id}`}
+              to={`/edit/${item._id}`}
               variant="contained"
               color="primary"
               sx={{ mr: 1 }}
@@ -141,7 +141,7 @@ const ShowItemDetails = () => {
         <DialogTitle id="alert-dialog-title">{"Confirm Deletion"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete this book? This action cannot be undone.
+            Are you sure you want to delete this Info? This action cannot be undone.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
