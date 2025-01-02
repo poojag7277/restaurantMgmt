@@ -14,6 +14,7 @@ import ShowItemList from './components/ShowItemList';
 import ShowItemDetails from './components/ShowItemDetails';
 import Update from './components/Update';
 import Export from './components/Export';
+import QRCode from './components/QRCode';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/show-restaurant/:id' element={<ShowItemDetails />} />
         <Route path='/edit/:id' element={<Update />} />
         <Route path='/export' element={<Export />} />
+        <Route path="/qrcode" element={<QRCode />} /> 
 
        
       </Routes>
