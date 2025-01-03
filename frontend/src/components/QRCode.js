@@ -20,7 +20,7 @@ const QRCode = () => {
 
   useEffect(() => {
     axios
-      .get('https://restaurantmgmt.onrender.com/api/restaurants') // Update with your API endpoint
+      .get('https://restaurantmgmt.onrender.com/api/restaurant') // Update with your API endpoint
       .then((res) => {
         console.log('API response:', res.data);
         if (Array.isArray(res.data)) {
@@ -45,7 +45,7 @@ const QRCode = () => {
     const source = serializer.serializeToString(svg);
 
     const img = new Image();
-    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+    img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(source)}` ;
 
     img.onload = () => {
       canvas.width = img.width;
