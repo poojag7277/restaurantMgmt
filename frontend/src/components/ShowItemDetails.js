@@ -72,7 +72,7 @@ const ShowItemDetails = () => {
               <CardMedia
                 component="img"
                 height="300"
-                image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Findian-food-restaurant&psig=AOvVaw0WWn9kjUcGkQb_1pq_vG7L&ust=1736241736359000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJjNsdHi4IoDFQAAAAAdAAAAABAI"
+                image="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt={item.title}
               />
             </Card>
