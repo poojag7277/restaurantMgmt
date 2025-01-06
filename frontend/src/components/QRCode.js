@@ -39,8 +39,8 @@ const QRCode = () => {
   
 
   const downloadQR = (restaurantId, restaurantName) => {
-    const canvas = document.createElement('canvas');
-    const svg = document.getElementById(`qr-${restaurantId}`);
+    const canvas = document.createElement('canvas');//for design development of js
+    const svg = document.getElementById(`qr-${restaurantId}`);//back slash `` is used to show that a new language is used
     const serializer = new XMLSerializer();
     const source = serializer.serializeToString(svg);
 
@@ -54,7 +54,7 @@ const QRCode = () => {
       ctx.drawImage(img, 0, 0);
 
       const a = document.createElement('a');
-      a.download = `QR-${restaurantName.replace(/\s+/g, '-')}.png`;
+      a.download = `QR-${restaurantName.replace(/\s+/g, '-')}.png`;// here the / \ are regular expression and QR is just any word used for reference
       a.href = canvas.toDataURL('image/png');
       a.click();
     };
@@ -74,7 +74,7 @@ const QRCode = () => {
         Restaurant QR Codes
       </Typography>
       <Typography variant="body1" gutterBottom align="center" sx={{ mb: 4 }}>
-        Click on a QR code to download it or use the "Download QR" button.
+        Click on a QR code to download it.
       </Typography>
 
       <Grid container spacing={3}>
@@ -103,7 +103,7 @@ const QRCode = () => {
                   size={200}
                   level="H"
                   includeMargin
-                  onClick={() => downloadQR(restaurant._id, restaurant.name)} // Trigger download on QR click
+                  onClick={() => downloadQR(restaurant._id, restaurant.name)} // Trigger download on QR click and id & name is given for the url opening purpose
                 />
                 <Typography
                   variant="h6"
@@ -124,7 +124,7 @@ const QRCode = () => {
                 <Button
                   variant="outlined"
                   startIcon={<DownloadIcon />}
-                  onClick={() => downloadQR(restaurant._id, restaurant.name)}
+                  onClick={() => downloadQR(restaurant._id, restaurant.name)} // name and id are passed as for url download path 
                   size="small"
                 >
                   Download QR
