@@ -31,7 +31,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://restaurantmgmt.onrender.com/api/restaurants')
+    axios.get('https://restaurantmgmt.onrender.com/api/restaurant')
       .then((res) => {
         console.log('API response:', res.data);
         const restaurants = Array.isArray(res.data) ? res.data : [];
