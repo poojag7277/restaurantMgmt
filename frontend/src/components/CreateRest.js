@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 //import { Container } from '@mui/material';
 
 import axios from 'axios';
+import { Container } from '@mui/material';
 
 const CreateRest = () => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const CreateRest = () => {
   };
 
   return (
+    <Container maxWidth="sm" sx={{textAlign:'center',py: 5}}>
     <div className='CreateRest'>
       <ToastContainer
         position="top-right"
@@ -95,12 +97,12 @@ const CreateRest = () => {
           <div className='col-md-8 m-auto'>
             <br />
             <Link to='/show-restaurant' className='btn btn-outline-warning float-left'>
-              Show Order List
+              Show Restaurants List
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Add Info</h1>
-            <p className='lead text-center'>Create New Page</p>
+            <h1 className='display-4 text-center'>Add New Restaurant</h1>
+{/*             <p className='lead text-center'>Create New Page</p> */}
 
             <form noValidate onSubmit={onSubmit}>
               <div className='form-group'>
@@ -161,7 +163,9 @@ const CreateRest = () => {
 
 
     </div>
+    </Container>
   );
 };
+
 
 export default CreateRest;

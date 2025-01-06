@@ -38,20 +38,18 @@ const Navbar= () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'primary.main' }}>
                Restaurant Management Project
                 </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0 }}>
                         <Button 
                         color="primary"
                         component={RouterLink}
                         to="/"
                         startIcon={<HomeIcon />} >
-                            HomePage
                         </Button>
                         <Button  
                         color="primary"
                         onClick={handleNotesClick}
                         startIcon={<MenuBookIcon />} // Added icon here
              >
-                            Popular Items
                         </Button>
 
                         <Button
@@ -60,7 +58,6 @@ const Navbar= () => {
             to="/export"
             startIcon={<DownloadIcon />}
           >
-            Export
           </Button>
                         <Menu 
                         anchorEl={notesAnchorEl}
