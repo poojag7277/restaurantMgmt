@@ -2,21 +2,18 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
+import { Grid, Typography, TextField, Button, Box, Paper, Container } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
-//import { Container } from '@mui/material';
-
 import axios from 'axios';
-import { Container } from '@mui/material';
 
 const CreateRest = () => {
   const navigate = useNavigate();
-  const [description,setDescription] = useState({
+  const [description, setDescription] = useState({
     name: '',
-    phonenumber:'' ,
-    location:'',
-    date:''
+    phonenumber: '',
+    location: '',
+    date: ''
   });
-  const [showToast, setShowToast] = useState(false);
 
   const onChange = (e) => {
     setDescription({ ...description, [e.target.name]: e.target.value });
@@ -25,48 +22,52 @@ const CreateRest = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-      axios
+    if (!description.name || !description.phonenumber || !description.location || !description.date) {
+      toast.error('Please fill all the fields!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Slide,
+      });
+      return;
+    }
+
+    axios
       .post('https://restaurantmgmt.onrender.com/api/restaurant', description)
-      .then(() => {
+      .then((res) => {
         setDescription({
           name: '',
-          phonenumber:'' ,
-          location:'',
-          date:''
+          phonenumber: '',
+          location: '',
+          date: ''
         });
 
-        // Show the success alert
         toast.success('You are added successfully!', {
           position: "top-right",
-          autoClose: 1000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
-          // pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: "dark",
           transition: Slide,
         });
 
-        // Delay the navigation slightly to allow the toast to be seen
         setTimeout(() => {
-          setShowToast(false); // Hide the toast
-          navigate('/show-restaurant'); // Navigate to homepage
-        }, 1000); // Adjust the timeout as needed
-
+          navigate('/show-restaurant');
+        }, 2000);
       })
       .catch((err) => {
-        console.log('Error in CreateRest!');
-        console.log("The error is -> ",err)
-        console.log(err)
-//        console.log(err.response ? err.response.data : err.message)
-        // Show the success alert
+        console.error('Error in CreateRest!', err);
         toast.error('Something went wrong, try again!', {
           position: "top-right",
-          autoClose: 1000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: "dark",
@@ -76,96 +77,84 @@ const CreateRest = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{textAlign:'center',py: 5}}>
-    <div className='CreateRest'>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Slide}
-      />
+    <Container maxWidth="sm" sx={{ py: 5 }}>
+      <ToastContainer />
+      <Paper sx={{ p: 4, borderRadius: 2, boxShadow: 3 }}>
+        <Typography variant="h4" sx={{ mb: 2 }} align="center">
+          Add Restaurant Info
+        </Typography>
 
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-8 m-auto'>
-            <br />
-            <Link to='/show-restaurant' className='btn btn-outline-warning float-left'>
-              Show Restaurants List
-            </Link>
-          </div>
-          <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Add New Restaurant</h1>
-{/*             <p className='lead text-center'>Create New Page</p> */}
-
-            <form noValidate onSubmit={onSubmit}>
-              <div className='form-group'>
-                <input
-                  type='text'
-                  placeholder='Enter your Name'
-                  name='name'
-                  className='form-control'
-                  value={description.name}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  type='number'
-                  placeholder='Enter your Phone Number'
-                  name='phonenumber'
-                  className='form-control'
-                  value={description.phonenumber}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  placeholder='Enter your address'
-                  name='location'
-                  className='form-control'
-                  value={description.location}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  type='date'
-                  placeholder='Enter date'
-                  name='date'
-                  className='form-control'
-                  value={description.date}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <input
-                type='submit'
-                className='btn btn-outline-warning btn-block mt-4'
+        <Box component="form" onSubmit={onSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Name"
+                name="name"
+                value={description.name}
+                onChange={onChange}
+                required
+                variant="outlined"
               />
-            </form>
-          </div>
-        </div>
-      </div>
+            </Grid>
 
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Phone Number"
+                type="number"
+                name="phonenumber"
+                value={description.phonenumber}
+                onChange={onChange}
+                required
+                variant="outlined"
+              />
+            </Grid>
 
-    </div>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Location"
+                name="location"
+                value={description.location}
+                onChange={onChange}
+                required
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Date"
+                type="date"
+                name="date"
+                value={description.date}
+                onChange={onChange}
+                required
+                InputLabelProps={{ shrink: true }}
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
+
+          <Box sx={{ mt: 4 }}>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Submit
+            </Button>
+          </Box>
+        </Box>
+
+        <Box sx={{ mt: 3 }} textAlign="center">
+          <Link to="/show-restaurant" style={{ textDecoration: 'none' }}>
+            <Button variant="outlined" color="secondary">
+              Show Order List
+            </Button>
+          </Link>
+        </Box>
+      </Paper>
     </Container>
   );
 };
-
 
 export default CreateRest;
