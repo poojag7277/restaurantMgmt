@@ -9,10 +9,13 @@ function ShowItemList() {
   const [items, setItems] = useState([]); // Ensure default state is an array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const URL = process.env.REACT_APP_API_URL;
+  if (!URL) {
+    console.error('URL is not defined in the environment variables'); // Log error for undefined URL
+  }
   useEffect(() => {
     axios
-      .get("https://restaurantmgmt.onrender.com/api/restaurant" )
+      .get(`${URL}/api/restaurant`)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setItems(res.data); // Ensure data is an array
@@ -32,7 +35,7 @@ function ShowItemList() {
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h3" component="h1" color="primary" gutterBottom>
-        Items List
+       Restaurants List
       </Typography>
 
       <Button
@@ -42,7 +45,7 @@ function ShowItemList() {
         variant="contained"
         sx={{ mb: 4 }}
       >
-        Add Data
+        Add New Restaurant
       </Button>
 
       {loading ? (
@@ -60,7 +63,7 @@ function ShowItemList() {
           {items.length === 0 ? (
             <Grid restaurant xs={12}>
               <Typography variant="h6" color="text.secondary">
-                No items found! Add some items to get started.
+                No items found!
               </Typography>
             </Grid>
           ) : (

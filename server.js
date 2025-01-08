@@ -4,7 +4,7 @@ const cors = require("cors"); // Import CORS
 const restaurant = require("./routes/restaurantRoute");
 const path = require("path");
 require("dotenv").config({ path: "./config.env" });
-
+const URL = process.env.REACT_APP_API_URL;
 // Connect to MongoDB
 connectDB();
 const app = express();
@@ -14,7 +14,7 @@ app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-    origin: ["https://restaurantmgmt.onrender.com", "https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io"], // Allowed origins
+    origin: [`${URL}`, "https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io"], // Allowed origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true
 }));

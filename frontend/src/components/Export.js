@@ -14,9 +14,14 @@ import * as XLSX from 'xlsx';
 const Export = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
+  const URL = process.env.REACT_APP_API_URL;
+  
+  if (!URL) {
+    console.error('URL is not defined in the environment variables'); // Log error for undefined URL
+  }
 
   useEffect(() => {
-    axios.get('https://restaurantmgmt.onrender.com/api/restaurant')
+    axios.get(`${URL}/api/restaurant`)
       .then((res) => {
         setRestaurants(res.data);
         setLoading(false);

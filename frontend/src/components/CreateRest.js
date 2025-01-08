@@ -7,6 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 const CreateRest = () => {
+  const URL = process.env.REACT_APP_API_URL;
+
+  if (!URL) {
+    console.error('URL is not defined in the environment variables'); // Log error for undefined URL
+  }
   const navigate = useNavigate();
   const [description, setDescription] = useState({
     name: '',
@@ -14,6 +19,7 @@ const CreateRest = () => {
     location: '',
     date: ''
   });
+
 
   const onChange = (e) => {
     setDescription({ ...description, [e.target.name]: e.target.value });
@@ -37,7 +43,7 @@ const CreateRest = () => {
     }
 
     axios
-      .post('https://restaurantmgmt.onrender.com/api/restaurant', description)
+      .post(`${URL}/api/restaurant`, description)
       .then((res) => {
         setDescription({
           name: '',

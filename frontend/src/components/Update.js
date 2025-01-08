@@ -12,10 +12,13 @@ function Update(props) {
 
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const URL = process.env.REACT_APP_API_URL;
+  if (!URL) {
+    console.error('URL is not defined in the environment variables'); // Log error for undefined URL
+  }
   useEffect(() => {
     axios
-      .get(`https://restaurantmgmt.onrender.com/api/restaurant/${id}`)
+      .get(`${URL}/api/restaurant/${id}`)
       .then((res) => {
         setItem({
             name: res.data.name,
@@ -45,7 +48,7 @@ function Update(props) {
     };
 
     axios
-      .put(`https://restaurantmgmt.onrender.com/api/restaurant/${id}`, data)
+      .put(`${URL}/api/restaurant/${id}`, data)
       .then((res) => {
         navigate(`/show-restaurant/${id}`);
       })

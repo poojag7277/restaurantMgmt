@@ -15,12 +15,15 @@ import axios from 'axios';
 
 const QRCode = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const URL = process.env.REACT_APP_API_URL;
   const [loading, setLoading] = useState(true);
-  const baseUrl = 'https://restaurantmgmt.onrender.com/show-restaurant/';
-
+  const baseUrl = `${URL}/show-restaurant/`;
+  if (!URL) {
+    console.error('URL is not defined in the environment variables'); // Log error for undefined URL
+  }
   useEffect(() => {
     axios
-      .get('https://restaurantmgmt.onrender.com/api/restaurant') // Update with your API endpoint
+      .get(`${URL}/api/restaurant`) // Update with your API endpoint
       .then((res) => {
         console.log('API response:', res.data);
         if (Array.isArray(res.data)) {
