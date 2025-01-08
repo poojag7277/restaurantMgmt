@@ -37,5 +37,5 @@ app.get("*", function (req, res) {
 
 // Start the server
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Express server running on port ${port}`));
+app.listen(port, () => console.log(`Express server running at http://localhost:${port}`));
 
