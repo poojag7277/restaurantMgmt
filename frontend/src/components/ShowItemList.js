@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui/material';
+import {
+  Button,
+  Typography,
+  Container,
+  Grid,
+  CircularProgress,
+  Box,
+  Card,
+  CardContent,
+} from '@mui/material';
 
 import ItemsCard from './ItemsCard';
 
 function ShowItemList() {
-  const [items, setItems] = useState([]); // Ensure default state is an array
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const URL = process.env.REACT_APP_API_URL;
-  if (!URL) {
-    console.error('URL is not defined in the environment variables'); // Log error for undefined URL
-  }
+
   useEffect(() => {
     axios
       .get(`${URL}/api/restaurant`)
       .then((res) => {
         if (Array.isArray(res.data)) {
-          setItems(res.data); // Ensure data is an array
+          setItems(res.data);
         } else {
           console.error('Unexpected data format:', res.data);
           setError('Unexpected data format received from the server.');
@@ -33,23 +41,26 @@ function ShowItemList() {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h3" component="h1" color="primary" gutterBottom>
-       Restaurants List
-      </Typography>
+    <Container maxWidth="xl" sx={{ py: 5 }}>
+      {/* Header */}
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+        <Typography variant="h3" component="h1" color="primary" fontWeight="bold">
+          Restaurants List
+        </Typography>
+        <Button
+          component={Link}
+          to="/create-rest"
+          color="primary"
+          variant="contained"
+          size="large"
+        >
+          Add New Restaurant
+        </Button>
+      </Box>
 
-      <Button
-        component={Link}
-        to="/create-rest"
-        color="primary"
-        variant="contained"
-        sx={{ mb: 4 }}
-      >
-        Add New Restaurant
-      </Button>
-
+      {/* Loading/ Error State */}
       {loading ? (
-        <Box display="flex" justifyContent="center" mt={4}>
+        <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
           <CircularProgress />
         </Box>
       ) : error ? (
@@ -59,21 +70,42 @@ function ShowItemList() {
           </Typography>
         </Box>
       ) : (
-        <Grid container spacing={3}>
-          {items.length === 0 ? (
-            <Grid restaurant xs={12}>
-              <Typography variant="h6" color="text.secondary">
-                No items found!
-              </Typography>
-            </Grid>
-          ) : (
-            items.map((restaurant, index) => (
-              <Grid xs={12} sm={6} md={4} key={index}>
-                <ItemsCard restaurant={restaurant} />
+        <Box>
+          {/* Sub-header */}
+          <Card sx={{ mb: 4, p: 2, bgcolor: 'primary.light', color: 'white' }}>
+            <Typography variant="h6" align="center">
+              Browse the list of restaurants below and click on a card to view details.
+            </Typography>
+          </Card>
+
+          {/* Items Grid */}
+          <Grid container spacing={4}>
+            {items.length === 0 ? (
+              <Grid item xs={12}>
+                <Typography variant="h6" color="text.secondary" align="center">
+                  No restaurants found!
+                </Typography>
               </Grid>
-            ))
-          )}
-        </Grid>
+            ) : (
+              items.map((restaurant, index) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  key={index}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <ItemsCard restaurant={restaurant} />
+                </Grid>
+              ))
+            )}
+          </Grid>
+        </Box>
       )}
     </Container>
   );
