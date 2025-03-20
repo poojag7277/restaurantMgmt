@@ -14,7 +14,7 @@ app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-    origin: [`${URL}`, "https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us117.gitpod.io"], // Allowed origins
+    origin: ['https://restaurantmgmt.onrender.com','https://5000-poojag7277-restaurantmg-1115xqmkyhv.ws-us118.gitpod.io'], // Allowed origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true
 }));
